@@ -3,7 +3,7 @@ from werkzeug.utils import redirect
 
 from utility.blueprint import ProjectBlueprint
 from utility.user import is_logged_in
-from web.blueprints.donor.model import DonorModel
+from web.blueprints.donor.model import DonorModel, BloodModel
 from web.extensions import db
 
 blueprint = ProjectBlueprint('donor', __name__)
@@ -53,3 +53,51 @@ def add():
         return redirect(url_for('index'))
 
     return render_template('donor/add.html')
+
+
+@blueprint.route(blueprint.url + '/add_blood', methods=['GET', 'POST'])
+@is_logged_in
+def add_blood():
+    if request.method == 'POST':
+        donor_id = request.form["donor_id"]
+        blood_group = request.form["blood_group"]
+        packets_donated = request.form["packets_donated"]
+        data = BloodModel(donor_id, blood_group, packets_donated)
+        data.save_to_db()
+        flash('Success! Donor Blood details Added.', 'success')
+        return redirect(url_for('dashboard.dashboard'))
+    return render_template('donor/add_blood.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# @blueprint.route(blueprint.url + '/add_blood', methods=['GET', 'POST'])
+# @is_logged_in
+# def add_blood():
+#     form = bloodForm()
+#     if form.validate_on_submit():
+#         data = BloodForm()
+#         form.populate_obj(data)
+#         save_to_db(data)
+#         flash('Success! Donor Blood details Added.', 'success')
+#         return redirect(url_for('dashboard.dashboard'))
+#     return render_template('donor/add_blood.html')

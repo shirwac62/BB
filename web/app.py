@@ -9,7 +9,7 @@ from web.extensions import db
 def create_app(settings_override=None):
     app = Flask(__name__)
     app.secret_key = 'some secret key'
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:feelfree252@127.0.0.1:5432/bloodBank'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:feelfree252@192.168.1.200:5432/bloodBank'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['PROPAGATE_EXCEPTIONS'] = True
     for blood in blood_list:

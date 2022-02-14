@@ -94,7 +94,7 @@ def bloodform():
         flash('Success! Donor Blood details Added.', 'success')
         return redirect(url_for('dashboard'))
 
-    return render_template('bloodform.html')
+    return render_template('add_blood.html')
 
 
 @app.route('/notifications')
