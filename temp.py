@@ -22,7 +22,7 @@ def contact():
         flash('Your request is successfully sent to the Blood Bank', 'success')
         return redirect(url_for('index'))
 
-    return render_template('contact.html')
+    return render_template('add.html')
 
 
 

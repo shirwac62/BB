@@ -47,7 +47,7 @@ def add():
         address = request.form["address"]
         disease = request.form["disease"]
         tel = request.form["tell"]
-        donor = DonorModel(id, dname, tel, sex, age, weight, address, disease)
+        donor = DonorModel(dname, tel, sex, age, weight, address, disease)
         donor.save_to_db()
         flash('Success! Donor details Added.', 'success')
         return redirect(url_for('index'))
