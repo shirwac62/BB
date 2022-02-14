@@ -36,7 +36,7 @@ def pub_index():
     data_list = DonorModel.query.filter(and_(*filter_data)).paginate(page, length, True)
     data = []
     for b in data_list.items:
-        row = [b.id, b.name, b.sex, b.age, b.weight, b.address, b.disease, b.tel]
+        row = [b.id, b.name, b.sex, b.age, b.weight, b.address, b.disease, b.tel, "<a href='/donor/edit/{}' >Edit</a>".format(b.id)]
         data += [row]
     print("data_list.total: ", data_list.total)
     return jsonify({'data': data, "recordsTotal": data_list.total,
@@ -60,8 +60,26 @@ def add():
         donor.save_to_db()
         flash('Success! Donor details Added.', 'success')
         return redirect(url_for('index'))
+    
+@blueprint.route(blueprint.url + '/edit/<id_>', methods=['GET', 'POST'])
+@is_logged_in
+def edit(id_):
+    donor = DonorModel.query.filter(DonorModel.id == id_).first()
+    if request.method == 'POST':
+        # Get Form Fields
+        # id = request.form["id"]
+        donor.name = request.form["name"]
+        donor.sex = request.form["sex"]
+        donor.age = request.form["age"]
+        donor.weight = request.form["weight"]
+        donor.address = request.form["address"]
+        donor.disease = request.form["disease"]
+        donor.tel = request.form["tell"]
+        donor.save_to_db()
+        flash('Success! Donor details Added.', 'success')
+        return redirect(url_for('index'))
 
-    return render_template('donor/add.html')
+    return render_template('donor/edit.html', data=donor)
 
 
 @blueprint.route(blueprint.url + '/add_blood', methods=['GET', 'POST'])
