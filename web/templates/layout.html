@@ -18,13 +18,27 @@
 <script src="{{url_for('static', filename='bootstrap-3.4.1-dist/js/bootstrap.min.js')}}"></script>
 <script>
   $(document).ready( function () {
-    $('#example').DataTable({
+    let data_table = $('#example').DataTable({
         lengthMenu: [[5, 10, 25, 50, 100, -1], [5, 10, 25, 50, 100, "All"]],
         "serverSide": true,
+        'bFilter': false,
         "ajax": {  url: "donor/api",
-        "data": function (d) {   delete d.columns; },
+        "data": function (d) {
+               delete d.columns;
+               d.name = $("#name").val();
+               d.address = $("#address").val();
+               console.log(d.name,d.address); 
+            },
         },
     });
+    $("#name").on('change keydown paste input',(function(){
+        //console.log($("#name").val());
+        data_table.ajax.reload();
+    }));
+    $("#address").on('change keydown paste input',(function(){
+        //console.log($("#address").val());
+        data_table.ajax.reload();
+    }));
 } );
 </script>
 

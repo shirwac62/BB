@@ -1,5 +1,6 @@
 from flask import request, flash, url_for, render_template, jsonify
 from werkzeug.utils import redirect
+from sqlalchemy import and_
 
 from utility.blueprint import ProjectBlueprint
 from utility.user import is_logged_in
@@ -18,13 +19,21 @@ def index():
 @blueprint.route(blueprint.url + '/api')
 def pub_index():
     start = int(request.args.get('start', 0))
-    search = request.args.get('search[value]', '')
-    print("search: ", search)
+    # search = request.args.get('search[value]', '')
+    # print("search: ", search)
+    name = request.args.get('name', '')
+    address = request.args.get('address', '')
+    filter_data = []
+    if name:
+        filter_data.append(DonorModel.name.ilike('%' + name + '%'))
+    if address:
+        filter_data.append(DonorModel.address.ilike('%' + address + '%'))
+
     length = int(request.args.get('length', 5))
     if length and int(length) == -1:
         length = db.session.query(DonorModel.id).count()
     page = (int(start) + int(length)) / int(length)
-    data_list = DonorModel.query.filter(DonorModel.name.ilike('%' + search + '%')).paginate(page, length, True)
+    data_list = DonorModel.query.filter(and_(*filter_data)).paginate(page, length, True)
     data = []
     for b in data_list.items:
         row = [b.id, b.name, b.sex, b.age, b.weight, b.address, b.disease, b.tel]
