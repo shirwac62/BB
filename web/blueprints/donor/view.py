@@ -47,7 +47,7 @@ def add():
         address = request.form["address"]
         disease = request.form["disease"]
         tel = request.form["tell"]
-        donor = DonorModel(id, dname, tel, sex, age, weight, address, disease)
+        donor = DonorModel(dname, tel, sex, age, weight, address, disease)
         donor.save_to_db()
         flash('Success! Donor details Added.', 'success')
         return redirect(url_for('index'))
@@ -83,21 +83,3 @@ def add_blood():
 
 
 
-
-
-
-
-
-
-
-# @blueprint.route(blueprint.url + '/add_blood', methods=['GET', 'POST'])
-# @is_logged_in
-# def add_blood():
-#     form = bloodForm()
-#     if form.validate_on_submit():
-#         data = BloodForm()
-#         form.populate_obj(data)
-#         save_to_db(data)
-#         flash('Success! Donor Blood details Added.', 'success')
-#         return redirect(url_for('dashboard.dashboard'))
-#     return render_template('donor/add_blood.html')

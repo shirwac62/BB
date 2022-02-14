@@ -16,11 +16,11 @@
     </tr>
     {% for request in requests %}
       <tr>
-        <td>{{request.CONTACT_ID}}</td>
-        <td>{{request.F_NAME}}</td>
-        <td>{{request.B_GROUP}}</td>
-        <td>{{request.C_PACKETS}}</td>
-        <td>{{request.ADRESS}}</td>
+        <td>{{request.id}}</td>
+        <td>{{request.full_name}}</td>
+        <td>{{request.blood_group}}</td>
+        <td>{{request.blood_packets}}</td>
+        <td>{{request.address}}</td>
         <td><a href="notifications/accept" class="btn btn-success">Accept</a></td>
         <td><a href="notifications/decline" class="btn btn-danger">Decline</a></td>
       </tr>

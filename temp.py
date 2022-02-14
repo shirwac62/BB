@@ -22,7 +22,7 @@ def contact():
         flash('Your request is successfully sent to the Blood Bank', 'success')
         return redirect(url_for('index'))
 
-    return render_template('contact.html')
+    return render_template('add.html')
 
 
 
@@ -105,10 +105,10 @@ def notifications():
     # requests = cur.fetchall()
     #
     # if result > 0:
-    #     return render_template('notification.html', requests=requests)
+    #     return render_template('index.html', requests=requests)
     # else:
     #     msg = ' No requests found '
-    #     return render_template('notification.html', msg=msg)
+    #     return render_template('index.html', msg=msg)
     # # close connection
     # cur.close()
     return None
