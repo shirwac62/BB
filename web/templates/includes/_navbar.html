@@ -1,31 +1,55 @@
-<nav class="navbar navbar-default" style="background-color:#932007; font-size: 20px;">
-    <a class="navbar-brand" href="/" style="font-family:Arial, Helvetica, sans-serif;">Blood Bank Monitoring</a>
+<nav
+  class="navbar navbar-default"
+  style="background-color: #932007; font-size: 20px"
+>
+  <a
+    class="navbar-brand"
+    href="/"
+    style="font-family: Arial, Helvetica, sans-serif"
+    >Blood Bank Monitoring</a
+  >
 
-    <div class="container-fluid" id="navbarsExampleDefault">
-        <ul class="nav navbar-nav">
-            {% if session.logged_in %}
-            <li class="nav-item default"><a class="nav-link" href="/donor/add">Donate</a></li>
-            <li class="nav-item default"><a class="nav-link" href="/donor">Logs</a></li>
-            <li class="nav-item default"><a class="nav-link" href="{{ url_for('donor.add_blood') }}">Add</a></li>
-            <li class="nav-item default"><a class="nav-link" href="/request/request">Requests</a></li>
-            {% else %}
-            <li class="nav-item default"><a class="nav-link" href="/">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="/contact/add">Contact us</a></li>
-            {% endif %}
-        </ul>
+  <div class="container-fluid" id="navbarsExampleDefault">
+    <ul class="nav navbar-nav">
+      {% if session.logged_in %}
+      <li class="nav-item default">
+        <a class="nav-link" href="/donor/add">Donate</a>
+      </li>
+      <li class="nav-item default">
+        <a class="nav-link" href="/donor">Logs</a>
+      </li>
+      <li class="nav-item default">
+        <a class="nav-link" href="{{ url_for('donor.add_blood') }}">Add</a>
+      </li>
+      <li class="nav-item default">
+        <a class="nav-link" href="/request/request">Requests</a>
+      </li>
+      {% else %}
+      <li class="nav-item default"><a class="nav-link" href="/">Home</a></li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact/add">Contact us</a>
+      </li>
+      {% endif %}
+    </ul>
 
-        {% if session.logged_in %}
-        <ul class="nav navbar-nav">
-
-            <li class="nav-item default"><a class="nav-link" href="/dashboard">Dashboard</a></li>
-            <li class="nav-item default"><a class="nav-link" href="/logout">Logout</a></li>
-        </ul>
-        {% else %}
-        <ul class="nav navbar-nav">
-            <li class="nav-item default"><a class="nav-link" href="/register">Register</a></li>
-            <li class="nav-item default"><a class="nav-link" href="/login">Login</a></li>
-        </ul>
-        {% endif %}
-
-    </div>
+    {% if session.logged_in %}
+    <ul class="nav navbar-nav">
+      <li class="nav-item default">
+        <a class="nav-link" href="/dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item default">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+    {% else %}
+    <ul class="nav navbar-nav">
+      <li class="nav-item default">
+        <a class="nav-link" href="/register">Register</a>
+      </li>
+      <li class="nav-item default">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+    </ul>
+    {% endif %}
+  </div>
 </nav>
