@@ -60,6 +60,8 @@ def add():
         donor.save_to_db()
         flash('Success! Donor details Added.', 'success')
         return redirect(url_for('index'))
+    return render_template('donor/add.html', title='donor')
+
     
 @blueprint.route(blueprint.url + '/edit/<id_>', methods=['GET', 'POST'])
 @is_logged_in

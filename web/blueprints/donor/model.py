@@ -35,7 +35,7 @@ class DonorModel(db.Model):
     age = db.Column(db.Integer())
     weight = db.Column(db.Integer())
     address = db.Column(db.String(80))
-    disease = db.Column(db.String(80))
+    disease = db.Column(db.String(200))
 
     def __init__(self, id, name, tel, sex, age, weight, address, disease):
         self.id = id
@@ -53,7 +53,7 @@ class DonorModel(db.Model):
 
     @classmethod
     def list(cls):
-        return list(map(lambda x: [x.id, x.name, x.tel, x.tel, x.sex, x.age, x.weight, x.address, x.address],
+        return list(map(lambda x: [x.id, x.name, x.tel, x.tel, x.sex, x.age, x.weight, x.address, x.disease],
                         DonorModel.query.all()))
 
     def save_to_db(self):
